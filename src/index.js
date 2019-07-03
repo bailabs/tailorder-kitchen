@@ -4,6 +4,8 @@ import styled from "styled-components";
 import DevTools from "mobx-react-devtools";
 import SocketIOClient from "socket.io-client";
 
+import App from "./boot/App";
+
 import Header from "./components/Header";
 import Filter from "./components/Filter";
 
@@ -54,28 +56,28 @@ const setCompletedFilter = () => {
   stateStore.setOrderFilter("Completed");
 }
 
-render(
-  <div>
-    <DevTools />
-    <Header />
-    <Content>
-      <Category>
-        <OrangeButton onClick={setPendingFilter}>
-          Pending Order
-        </OrangeButton>
-        <BlueButton
-          style={{ marginLeft: 10 }} 
-          onClick={setCompletedFilter}
-        >
-          Completed Order
-        </BlueButton>
-      </Category>
-      <Filter store={stateStore} />
-      <OrderList store={orderStore} />
-    </Content>
-  </div>,
-  document.getElementById("root")
-);
+// render(
+//   <div>
+//     <DevTools />
+//     <Header />
+//     <Content>
+//       <Category>
+//         <OrangeButton onClick={setPendingFilter}>
+//           Pending Order
+//         </OrangeButton>
+//         <BlueButton
+//           style={{ marginLeft: 10 }} 
+//           onClick={setCompletedFilter}
+//         >
+//           Completed Order
+//         </BlueButton>
+//       </Category>
+//       <Filter store={stateStore} />
+//       <OrderList store={orderStore} />
+//     </Content>
+//   </div>,
+//   document.getElementById("root")
+// );
 
 const socket = SocketIOClient("http://localhost:5000");
 
@@ -87,5 +89,8 @@ socket.on('connect', function() {
   });
 });
 
-// playing around in the console
+// Playing around in the console
 window.orderStore = orderStore;
+
+// Display the app
+render(<App />, document.getElementById("root"));

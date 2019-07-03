@@ -10,7 +10,7 @@ const HeaderTitle = styled.h1`
   font-family: Helvetica, sans-serif;
   font-size: 24px;
   text-align: center;
-  color: #1C2321;
+  color: #777;
   margin: 0;
 `;
 
