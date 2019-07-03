@@ -10,6 +10,5 @@ export default class StateModel {
   @action
   setOrderFilter(orderFilter) {
     this.orderFilter = orderFilter;
-    console.log(this.orderFilter);
   }
 }
