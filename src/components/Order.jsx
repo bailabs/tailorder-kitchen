@@ -6,7 +6,7 @@ const OrderCard = styled.div`
   box-sizing: border-box;
   display: inline-block;
   border-radius: 5px;
-  margin-right: 1em;
+  margin: 0 15px;
   min-width: 270px;
 
   overflow: hidden;
@@ -19,12 +19,18 @@ const OrderHeader = styled.div`
   color: #fff;
   font-family: Helvetica, sans-serif;
   font-weight: bold;
-  background-color: #0079bf;
+  background-color: #ff9f1a;
   padding: .75em 1em;
 `;
 
 const OrderContent = styled.div`
   padding: 1em;
+`;
+
+const OrderType = styled.div`
+  margin-bottom: 0.25em;
+  font-weight: 700;
+  color: #aaa;
 `;
 
 const OrderLines = styled.ul`
@@ -51,6 +57,7 @@ const Order = ({ order }) => (
       Table { order.tableNo }:
     </OrderHeader>
     <OrderContent>
+      <OrderType>{ order.type }</OrderType>
       <OrderLines>
         {_renderOrderLines(order.lines)}
       </OrderLines>

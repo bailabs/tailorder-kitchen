@@ -6,7 +6,7 @@ export default class OrderListModel {
   @observable orders = [];
 
   @action
-  addOrder(tableNo, lines) {
-    this.orders.push(new OrderModel(tableNo, lines));
+  addOrder(tableNo, type, lines) {
+    this.orders.push(new OrderModel(tableNo, type, lines));
   }
 }
