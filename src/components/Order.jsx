@@ -1,5 +1,9 @@
 import React from "react";
+import { entries } from "mobx";
+import { observer } from "mobx-react";
 import styled from "styled-components";
+
+import { getLocaleTimeString } from "../utils";
 
 const OrderCard = styled.div`
   background-color: #fff;
@@ -28,7 +32,7 @@ const OrderContent = styled.div`
 `;
 
 const OrderType = styled.div`
-  margin-bottom: 0.25em;
+  margin-bottom: 0.75em;
   font-weight: 700;
   color: #aaa;
 `;
@@ -43,12 +47,32 @@ const OrderLine = styled.li`
   padding: 0.25em;
 `;
 
-const _renderOrderLines = (lines) => {
-  return lines.map((line, id) =>
-    <OrderLine key={`order-line-${id}`}>
+const OrderTime = styled.div`
+  color: #777;
+`;
+
+const OrderDetail = styled.div`
+  padding: 0.25em;
+  border-top: 1px solid #efefef;
+`;
+
+const _renderLines = (lines) => {
+  return lines.map(line => 
+    <OrderLine>
       {line.qty} x {line.itemName}
     </OrderLine>
   );
+}
+
+const _renderOrderByTimes = (lines) => {
+  return entries(lines).map(([key, value]) => {
+    return (
+      <OrderDetail>
+        <OrderTime>{ getLocaleTimeString(key) }</OrderTime>
+        <OrderLines>{ _renderLines(value) }</OrderLines>
+      </OrderDetail>
+    );
+  });
 }
 
 const Order = ({ order }) => (
@@ -58,11 +82,9 @@ const Order = ({ order }) => (
     </OrderHeader>
     <OrderContent>
       <OrderType>{ order.type }</OrderType>
-      <OrderLines>
-        {_renderOrderLines(order.lines)}
-      </OrderLines>
+      {_renderOrderByTimes(order.lines)}
     </OrderContent>
   </OrderCard>
 );
 
-export default Order;
+export default observer(Order);

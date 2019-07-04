@@ -7,9 +7,10 @@ function onConnect() {
     stores.orderStore.addOrder(order);
   });
 
-  socket.on('update', function(message) {
-    console.log('onUpdate');
-    console.log(message);
+  socket.on('update', function(order) {
+    if (order.additional) {
+      stores.orderStore.additionalOrder(order);
+    }
   });
 }
 
