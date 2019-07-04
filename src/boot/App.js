@@ -12,6 +12,7 @@ import StateModel from "../models/StateModel";
 import OrderListModel from "../models/order/OrderListModel";
 
 import AppFunctions from "./AppFunctions";
+import SocketIO from "./SocketIO";
 
 export default function() {
   
@@ -21,6 +22,8 @@ export default function() {
   };
 
   const app = new AppFunctions(stores.stateStore);
+
+  SocketIO("http://localhost:5000", stores);
 
   return (
     <div>
