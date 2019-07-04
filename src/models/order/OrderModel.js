@@ -1,12 +1,13 @@
 import { observable } from "mobx";
 
 export default class OrderModel {
-  id = Math.random();
+  id;
+  type;
   @observable tableNo;
-  @observable type;
   @observable lines = [];
   
-  constructor(tableNo, type, lines) {
+  constructor(id, tableNo, type, lines) {
+    this.id = id;
     this.tableNo = tableNo;
     this.type = type;
     this.lines = lines;

@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Content from "../components/Content";
 import Button from "../components/Button";
 import Filter from "../components/Filter";
+import OrderList from "../components/OrderList";
 
 // Stores
 import StateModel from "../models/StateModel";
@@ -45,6 +46,7 @@ export default function() {
           </Button>
         </Row>
         <Filter store={stores.stateStore} />
+        <OrderList store={stores.orderStore} />
       </Content>
     </div>
   );

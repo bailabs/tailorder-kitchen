@@ -1,16 +1,20 @@
 import SocketIOClient from "socket.io-client";
 
-export default function(address, states) {
-  const socket = new SocketIOClient(address);
-
-  socket.on('connect', function() {
-    console.log('Connected to TailOrder');
-    socket.on('message', function(message) {
-      if (message.is_additional) {
-        console.log("additional");
-      } else {
-        console.log("dili additional");
-      }
-    });
+function onConnect() {
+  const { socket, stores } = this;
+  
+  socket.on('create', function(order) {
+    stores.orderStore.addOrder(order);
   });
+
+  socket.on('update', function(message) {
+    console.log('onUpdate');
+    console.log(message);
+  });
+}
+
+export default function(address, stores) {
+  const socket = new SocketIOClient(address);
+  const obj = { socket, stores };
+  socket.on('connect', onConnect.bind(obj));
 }
