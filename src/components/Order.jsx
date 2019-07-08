@@ -23,8 +23,11 @@ const OrderHeader = styled.div`
   color: #fff;
   font-family: Helvetica, sans-serif;
   font-weight: bold;
-  background-color: #ff9f1a;
   padding: .75em 1em;
+  
+  background-color: ${props => 
+    props.isFulfilled ? "#ff9f1a" : "#0079bf"
+  };
 `;
 
 const OrderContent = styled.div`
@@ -56,16 +59,16 @@ const OrderDetail = styled.div`
   border-top: 1px solid #efefef;
 `;
 
-const _renderLines = (lines) => {
-  return lines.map(line => 
+const _renderLines = (items) => {
+  return items.map(line => 
     <OrderLine>
       {line.qty} x {line.itemName}
     </OrderLine>
   );
 }
 
-const _renderOrderByTimes = (lines) => {
-  return entries(lines).map(([key, value]) => {
+const _renderOrderByTimes = (items) => {
+  return entries(items).map(([key, value]) => {
     return (
       <OrderDetail>
         <OrderTime>{ getLocaleTimeString(key) }</OrderTime>
@@ -77,12 +80,15 @@ const _renderOrderByTimes = (lines) => {
 
 const Order = ({ order }) => (
   <OrderCard>
-    <OrderHeader>
+    <OrderHeader
+      completed={order.isFulfilled}
+      cancelled={order.isCancelled}
+    >
       Table { order.tableNo }:
     </OrderHeader>
     <OrderContent>
       <OrderType>{ order.type }</OrderType>
-      {_renderOrderByTimes(order.lines)}
+      {_renderOrderByTimes(order.items)}
     </OrderContent>
   </OrderCard>
 );

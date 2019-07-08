@@ -5,13 +5,17 @@ export default class OrderModel {
   id;
   type;
   @observable tableNo;
-  @observable lines = {};
+  @observable items = {};
+  @observable isFulfilled;
+  @observable isCancelled;
   
-  constructor(id, tableNo, type, lines) {
+  constructor(id, tableNo, type, items, isFulfilled=false, isCancelled=false) {
     this.id = id;
     this.tableNo = tableNo;
     this.type = type;
-    this.lines = lines;
+    this.items = items;
+    this.isFulfilled = isFulfilled;
+    this.isCancelled = isCancelled;
   }
 
   @action
@@ -21,6 +25,6 @@ export default class OrderModel {
 
   @action
   appendLines(lines) {
-    this.lines = Object.assign(this.lines, lines);
+    this.items = Object.assign(this.items, items);
   }
 }

@@ -8,9 +8,25 @@ export default class OrderListModel {
 
   @action
   addOrder(order) {
-    const { id, table_no, type, lines } = order;
-    const linesByTime = getLinesByTime(lines);
-    const newOrder = new OrderModel(id, table_no, type, linesByTime);
+    const {
+      id, 
+      table_no, 
+      type, 
+      items,
+      is_fulfilled,
+      is_cancelled, 
+    } = order;
+
+    const linesByTime = getLinesByTime(items);
+    const newOrder = new OrderModel(
+      id,
+      table_no,
+      type,
+      linesByTime,
+      is_fulfilled,
+      is_cancelled
+    );
+
     this.orders.push(newOrder);
   }
 

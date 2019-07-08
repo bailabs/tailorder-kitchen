@@ -1,11 +1,39 @@
+import axios from 'axios';
+
 export default class AppFunctions {
-  constructor(stateStore) {
-    this.stateStore = stateStore;
+  constructor(stores) {
+    this.stores = stores;
+    this.fetchOrders();
   }
   setFilterPending = () => {
-    this.stateStore.setOrderFilter("Pending");
+    this.stores.stateStore.setOrderFilter("Pending");
   }
   setFilterCompleted = () => {
-    this.stateStore.setOrderFilter("Completed");
+    this.stores.stateStore.setOrderFilter("Completed");
   }
+  getFilter = () => {
+    return {
+      isFulfilled: this.stores.stateStore.orderFilter === "Completed",
+      isCancelled: this.stores.stateStore.orderFilter === "Cancelled"
+    }
+  }
+  fetchOrders = () => {
+    const { orderStore } = this.stores;
+    axios.get('http://localhost:5000/api/v1/all_orders/')
+      .then(function(response) {
+        _loadOrders(orderStore, response.data);
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+      .finally(function() {
+        console.log("finally");
+      });
+  }
+}
+
+function _loadOrders(orderStore, orders) {
+  orders.forEach(order => {
+    orderStore.addOrder(order);
+  });
 }

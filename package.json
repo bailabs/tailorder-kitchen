@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Kitchen Display for the TailOrder",
   "scripts": {
-    "start": "webpack-dev-server --hot --open",
+    "start": "webpack-dev-server --hot",
     "build": "webpack",
     "lint": "eslint src"
   },
@@ -27,6 +27,7 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "mobx": "^5.0.3",
     "mobx-react": "^5.2.3",
     "mobx-react-devtools": "^6.0.1",

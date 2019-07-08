@@ -22,7 +22,7 @@ export default function() {
     orderStore: new OrderListModel(),
   };
 
-  const app = new AppFunctions(stores.stateStore);
+  const app = new AppFunctions(stores);
 
   SocketIO("http://localhost:5000", stores);
 
@@ -46,7 +46,10 @@ export default function() {
           </Button>
         </Row>
         <Filter store={stores.stateStore} />
-        <OrderList store={stores.orderStore} />
+        <OrderList
+          store={stores.orderStore}
+          stateStore={stores.stateStore}
+        />
       </Content>
     </div>
   );
