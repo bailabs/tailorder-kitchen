@@ -56,4 +56,14 @@ export default class OrderListModel {
     let existingOrder = this.getOrder(order.id);
     existingOrder && existingOrder.cancel();
   }
+
+  @action
+  voidOrder(order) {
+    let existingOrder = this.getOrder(order.id);
+    if (existingOrder) {
+      const itemsByTime = groupByProperty(order.items, 'creation');
+      existingOrder.setItems(itemsByTime);
+      existingOrder.setRemarks(order.remarks);
+    }
+  }
 }

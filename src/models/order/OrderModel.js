@@ -26,6 +26,16 @@ export default class OrderModel {
   }
 
   @action
+  setItems(items) {
+    this.items = items;
+  }
+
+  @action
+  setRemarks(remarks) {
+    this.remarks = remarks;
+  }
+
+  @action
   appendLines(lines) {
     this.items = Object.assign(this.items, items);
   }
