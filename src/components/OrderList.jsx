@@ -31,11 +31,9 @@ class OrderList extends React.Component {
 
     return (
       <List className="order-list">
-        {
-          filtered.map(order => (
-            <Order order={order} key={order.id} />
-          ))
-        }
+        {filtered.map(order =>
+          <Order order={order} key={order.id} />
+        )}
       </List>
     );
   }

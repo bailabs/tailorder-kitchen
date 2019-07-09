@@ -1,7 +1,12 @@
-export function getLinesByTime(lines) {
-  const obj = {}
-  obj[Date.now()] = lines;
-  return obj;
+export function groupByProperty(arr, property) {
+  return arr.reduce(function(obj, item) {
+    const key = item[property];
+    if (!obj.hasOwnProperty(key)) {
+      obj[key] = [];
+    }
+    obj[key].push(item);
+    return obj;
+  }, {});
 }
 
 export function getLocaleTimeString(timestamp) {

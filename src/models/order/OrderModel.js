@@ -27,4 +27,9 @@ export default class OrderModel {
   appendLines(lines) {
     this.items = Object.assign(this.items, items);
   }
+
+  @action
+  fulfill() {
+    this.isFulfilled = true;
+  }
 }

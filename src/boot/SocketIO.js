@@ -11,6 +11,9 @@ function onConnect() {
     if (order.additional) {
       stores.orderStore.additionalOrder(order);
     }
+    if (order.fulfill) {
+      stores.orderStore.fulfillOrder(order);
+    }
   });
 }
 

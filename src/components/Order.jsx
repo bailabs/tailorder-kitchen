@@ -26,7 +26,7 @@ const OrderHeader = styled.div`
   padding: .75em 1em;
   
   background-color: ${props => 
-    props.isFulfilled ? "#ff9f1a" : "#0079bf"
+    props.isFulfilled ? "#0079bf" : "#ff9f1a"
   };
 `;
 
@@ -62,7 +62,7 @@ const OrderDetail = styled.div`
 const _renderLines = (items) => {
   return items.map(line => 
     <OrderLine>
-      {line.qty} x {line.itemName}
+      {line.qty} x {line.item_name}
     </OrderLine>
   );
 }
@@ -81,8 +81,8 @@ const _renderOrderByTimes = (items) => {
 const Order = ({ order }) => (
   <OrderCard>
     <OrderHeader
-      completed={order.isFulfilled}
-      cancelled={order.isCancelled}
+      isFulfilled={order.isFulfilled}
+      isCancelled={order.isCancelled}
     >
       Table { order.tableNo }:
     </OrderHeader>

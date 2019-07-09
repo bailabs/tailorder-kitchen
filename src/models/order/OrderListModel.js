@@ -1,5 +1,5 @@
 import { observable, action, computed } from "mobx";
-import { getLinesByTime } from "../../utils";
+import { groupByProperty } from "../../utils";
 
 import OrderModel from "./OrderModel";
 
@@ -17,12 +17,12 @@ export default class OrderListModel {
       is_cancelled, 
     } = order;
 
-    const linesByTime = getLinesByTime(items);
+    const itemsByTime = groupByProperty(items, 'creation');
     const newOrder = new OrderModel(
       id,
       table_no,
       type,
-      linesByTime,
+      itemsByTime,
       is_fulfilled,
       is_cancelled
     );
@@ -41,5 +41,11 @@ export default class OrderListModel {
     let existingOrder = this.getOrder(order.id);
     const linesByTime = getLinesByTime(order.lines);
     existingOrder && existingOrder.appendLines(linesByTime);
+  }
+
+  @action
+  fulfillOrder(order) {
+    let existingOrder = this.getOrder(order.id);
+    existingOrder && existingOrder.fulfill();    
   }
 }
