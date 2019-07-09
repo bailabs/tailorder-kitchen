@@ -48,6 +48,9 @@ const OrderLines = styled.ul`
 
 const OrderLine = styled.li`
   padding: 0.25em;
+  color: ${props =>
+    props.isVoided ? "#eb5a46": "#333"
+  };
   text-decoration: ${props => 
     props.isVoided ? "line-through" : "none"
   };
@@ -75,8 +78,11 @@ const TextRow = styled.div`
   color: #aaa;
   font-weight: 700;
   padding-bottom: 0.35em;
-  border-bottom: 1px solid #efefef;
   margin-bottom: 0.50em;
+
+  border-bottom: ${props => 
+    props.underline ? "1px solid #efefef" : "0"
+  };
 `;
 
 const _renderLines = (items) => {
@@ -107,6 +113,9 @@ const Order = ({ order }) => (
       Table { order.tableNo }:
     </OrderHeader>
     <OrderContent>
+      <TextRow underline={false}>
+        Order No. {order.id}
+      </TextRow>
       <OrderType>{ order.type }</OrderType>
       {_renderOrderByTimes(order.items)}
     </OrderContent>

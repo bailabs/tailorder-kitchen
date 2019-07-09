@@ -41,8 +41,10 @@ export default class OrderListModel {
   @action
   additionalOrder(order) {
     let existingOrder = this.getOrder(order.id);
-    const linesByTime = getLinesByTime(order.lines);
-    existingOrder && existingOrder.appendLines(linesByTime);
+    if (existingOrder) {
+      const itemsByTime = groupByProperty(order.items, 'creation');
+      existingOrder.setItems(itemsByTime);
+    }
   }
 
   @action
