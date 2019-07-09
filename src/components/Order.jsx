@@ -48,6 +48,9 @@ const OrderLines = styled.ul`
 
 const OrderLine = styled.li`
   padding: 0.25em;
+  text-decoration: ${props => 
+    props.isVoided ? "line-through" : "none"
+  };
 `;
 
 const OrderTime = styled.div`
@@ -59,9 +62,26 @@ const OrderDetail = styled.div`
   border-top: 1px solid #efefef;
 `;
 
+const OrderRemarks = styled.pre`
+  margin: 0;
+  line-height: 100%;
+`;
+
+const OrderFooter = styled.div`
+  padding: 1em;
+`;
+
+const TextRow = styled.div`
+  color: #aaa;
+  font-weight: 700;
+  padding-bottom: 0.35em;
+  border-bottom: 1px solid #efefef;
+  margin-bottom: 0.50em;
+`;
+
 const _renderLines = (items) => {
   return items.map(line => 
-    <OrderLine>
+    <OrderLine isVoided={line.is_voided}>
       {line.qty} x {line.item_name}
     </OrderLine>
   );
@@ -90,6 +110,10 @@ const Order = ({ order }) => (
       <OrderType>{ order.type }</OrderType>
       {_renderOrderByTimes(order.items)}
     </OrderContent>
+    <OrderFooter>
+      <TextRow>Remarks</TextRow>
+      <OrderRemarks>{order.remarks}</OrderRemarks>
+    </OrderFooter>
   </OrderCard>
 );
 

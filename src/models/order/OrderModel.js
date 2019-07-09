@@ -6,16 +6,18 @@ export default class OrderModel {
   type;
   @observable tableNo;
   @observable items = {};
+  @observable remarks;
   @observable isFulfilled;
   @observable isCancelled;
   
-  constructor(id, tableNo, type, items, isFulfilled=false, isCancelled=false) {
+  constructor(id, tableNo, type, items, remarks, isFulfilled=false, isCancelled=false) {
     this.id = id;
     this.tableNo = tableNo;
     this.type = type;
     this.items = items;
     this.isFulfilled = isFulfilled;
     this.isCancelled = isCancelled;
+    this.remarks = remarks;
   }
 
   @action
@@ -31,5 +33,10 @@ export default class OrderModel {
   @action
   fulfill() {
     this.isFulfilled = true;
+  }
+
+  @action
+  cancel() {
+    this.isCancelled = true;
   }
 }

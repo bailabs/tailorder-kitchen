@@ -13,6 +13,7 @@ export default class OrderListModel {
       table_no, 
       type, 
       items,
+      remarks,
       is_fulfilled,
       is_cancelled, 
     } = order;
@@ -23,6 +24,7 @@ export default class OrderListModel {
       table_no,
       type,
       itemsByTime,
+      remarks,
       is_fulfilled,
       is_cancelled
     );
@@ -47,5 +49,11 @@ export default class OrderListModel {
   fulfillOrder(order) {
     let existingOrder = this.getOrder(order.id);
     existingOrder && existingOrder.fulfill();    
+  }
+
+  @action
+  cancelOrder(order) {
+    let existingOrder = this.getOrder(order.id);
+    existingOrder && existingOrder.cancel();
   }
 }

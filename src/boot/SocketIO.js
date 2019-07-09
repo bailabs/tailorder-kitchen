@@ -14,6 +14,9 @@ function onConnect() {
     if (order.fulfill) {
       stores.orderStore.fulfillOrder(order);
     }
+    if (order.cancel) {
+      stores.orderStore.cancelOrder(order);
+    }
   });
 }
 
