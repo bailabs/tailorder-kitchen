@@ -3,7 +3,6 @@ import DevTools from "mobx-react-devtools";
 
 import Row from "../components/Row";
 import Header from "../components/Header";
-import Content from "../components/Content";
 import Button from "../components/Button";
 import Filter from "../components/Filter";
 import OrderList from "../components/OrderList";
@@ -27,30 +26,22 @@ export default function() {
   SocketIO("http://localhost:5000", stores);
 
   return (
-    <div>
+    <div id="main">
       <DevTools />
-      <Header />
-      <Content>
-        <Row>
-          <Button
-            secondary
-            onClick={app.setFilterPending}
-          >
-            Pending Order
-          </Button>
-          <Button
-            style={{ marginLeft: 10 }}
-            onClick={app.setFilterCompleted}
-          >
-            Completed Order
-          </Button>
-        </Row>
-        <Filter store={stores.stateStore} />
+      <header className="app-header">
+        <Header
+          store={stores.stateStore}
+          setFilterPending={app.setFilterPending}
+          setFilterCompleted={app.setFilterCompleted}
+          setFilterCancelled={app.setFilterCancelled}  
+        />
+      </header>
+      <content className="app-content">
         <OrderList
           store={stores.orderStore}
           stateStore={stores.stateStore}
         />
-      </Content>
+      </content>
     </div>
   );
 }

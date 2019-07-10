@@ -11,6 +11,9 @@ export default class AppFunctions {
   setFilterCompleted = () => {
     this.stores.stateStore.setOrderFilter("Completed");
   }
+  setFilterCancelled = () => {
+    this.stores.stateStore.setOrderFilter("Cancelled");
+  }
   getFilter = () => {
     return {
       isFulfilled: this.stores.stateStore.orderFilter === "Completed",
