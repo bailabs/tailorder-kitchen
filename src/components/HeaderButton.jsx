@@ -10,6 +10,7 @@ const Button = styled.button`
   border-left: 1px solid #ccc;
   width: 100px;
   height: 60px;
+  transition: all 0.3s ease-out;
   color: ${props => props.active ? "#fff": "#555"};
   background-color: ${props => props.active ? "#0079bf" : "#fff"};
   border-right: ${props => props.borderRight ? "1px solid #ccc" : 0 }
