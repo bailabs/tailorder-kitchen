@@ -3,6 +3,8 @@ import { entries } from "mobx";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 
+import OrderTimer from "./OrderTimer";
+
 import { getLocaleTimeString } from "../utils";
 
 const OrderCard = styled.div`
@@ -117,9 +119,7 @@ const Order = ({ order }) => (
       <div>
         Table { order.tableNo }:
       </div>
-      <div>
-        00:03
-      </div>
+      <OrderTimer />
     </OrderHeader>
     <OrderContent>
       <TextRow underline={false}>
