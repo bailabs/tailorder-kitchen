@@ -20,6 +20,8 @@ const OrderCard = styled.div`
 `;
 
 const OrderHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
   color: #fff;
   font-family: Helvetica, sans-serif;
   font-weight: bold;
@@ -75,6 +77,8 @@ const OrderFooter = styled.div`
 `;
 
 const TextRow = styled.div`
+  display: flex;
+  justify-content: space-between;
   color: #aaa;
   font-weight: 700;
   padding-bottom: 0.35em;
@@ -110,13 +114,18 @@ const Order = ({ order }) => (
       isFulfilled={order.isFulfilled}
       isCancelled={order.isCancelled}
     >
-      Table { order.tableNo }:
+      <div>
+        Table { order.tableNo }:
+      </div>
+      <div>
+        00:03
+      </div>
     </OrderHeader>
     <OrderContent>
       <TextRow underline={false}>
-        Order No. {order.id}
+        <div>Order No. {order.id}</div>
+        <div>{order.type}</div>
       </TextRow>
-      <OrderType>{ order.type }</OrderType>
       {_renderOrderByTimes(order.items)}
     </OrderContent>
     <OrderFooter>

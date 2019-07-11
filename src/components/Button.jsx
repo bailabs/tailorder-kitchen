@@ -13,7 +13,15 @@ const Button = styled.button`
   -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.15);
   box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.15);
 
-  background: ${props => props.secondary ? "#ff9f1a" : "#0079bf"};
+  background: ${props => {
+    if (props.danger) {
+      return "#eb5a46";
+    }
+    if (props.secondary) {
+      return "#ff9f1a";
+    }
+    return "#0079bf";
+  }};
 `;
 
 export default Button;
