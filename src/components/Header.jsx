@@ -7,6 +7,7 @@ import { faList, faCheck, faBan } from "@fortawesome/free-solid-svg-icons";
 
 import Button from "./Button";
 import HeaderButton from "./HeaderButton";
+import Modal from "./Modal";
 
 const HeaderBar = styled.div`
   display: flex;
@@ -47,6 +48,11 @@ const HeaderRight = styled.div`
   padding: 10px 15px;
 `;
 
+const ModalContent = styled.div`
+  text-align: center;
+  font-size: 18px;
+`;
+
 @observer
 class Header extends React.Component {
   render() {
@@ -84,9 +90,13 @@ class Header extends React.Component {
           />
         </HeaderBody>
         <HeaderRight>
-          <Button danger>
-            Close
-          </Button>
+          <Modal
+            danger
+            headerText="Confirm"
+            confirmText="Close"
+            text="Are you sure you want to close the kitchen?"
+            trigger={<Button danger>Close</Button>}  
+          />
         </HeaderRight>
       </HeaderBar>
     );

@@ -36,6 +36,7 @@
     "mobx-react-devtools": "^6.0.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "reactjs-popup": "^1.4.1",
     "socket.io-client": "^2.2.0",
     "styled-components": "^4.3.2"
   }
