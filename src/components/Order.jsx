@@ -6,12 +6,12 @@ import styled from "styled-components";
 import { getLocaleTimeString } from "../utils";
 
 const OrderCard = styled.div`
+  flex: 0 1 230px;
   background-color: #fff;
   box-sizing: border-box;
-  display: inline-block;
+  display: block;
   border-radius: 5px;
-  margin: 0 15px;
-  min-width: 270px;
+  margin: 20px 15px;
 
   overflow: hidden;
   -webkit-box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.11);

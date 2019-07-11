@@ -7,9 +7,10 @@ import Order from "./Order";
 import { filterByObject } from "../utils";
 
 const List = styled.div`
-  white-space: nowrap;
-  overflow-x: auto;
-  padding-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 const _getFilter = (orderFilter) => {
