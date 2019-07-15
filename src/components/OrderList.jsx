@@ -11,6 +11,7 @@ const List = styled.div`
   flex-wrap: wrap;
   overflow-y: auto;
   overflow-x: hidden;
+  flex: 1;
 `;
 
 const _getFilter = (orderFilter) => {

@@ -14,8 +14,9 @@ const OrderCard = styled.div`
   display: block;
   border-radius: 5px;
   margin: 20px 15px;
+  max-height: 300px;
 
-  overflow: hidden;
+  overflow-y: scroll;
   -webkit-box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.11);
   -moz-box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.11);
   box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.11);
@@ -123,7 +124,7 @@ const Order = ({ order }) => (
     </OrderHeader>
     <OrderContent>
       <TextRow underline={false}>
-        <div>Order No. {order.id}</div>
+        <div>Order {order.id}</div>
         <div>{order.type}</div>
       </TextRow>
       {_renderOrderByTimes(order.items)}
