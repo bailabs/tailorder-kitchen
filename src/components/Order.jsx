@@ -14,7 +14,8 @@ const OrderCard = styled.div`
   display: block;
   border-radius: 5px;
   margin: 20px 15px;
-  max-height: 300px;
+  min-height: 700px;
+  max-height: 700px;
 
   overflow-y: scroll;
   -webkit-box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.11);
