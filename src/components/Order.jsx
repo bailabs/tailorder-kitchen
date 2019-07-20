@@ -92,13 +92,29 @@ const TextRow = styled.div`
   };
 `;
 
+const _checkItemRemark = (item) => {
+  const length = item.item_name.length;
+  const lastChar = item.item_name[length - 1];
+  if (lastChar === '*') {
+    return true;
+  }
+  return false;
+};
+
 const _renderLines = (items) => {
-  return items.map(line => 
-    <OrderLine isVoided={line.is_voided}>
-      {line.qty} x {line.item_name}
-    </OrderLine>
-  );
-}
+  return items.map(item => {
+    const remark = _checkItemRemark(item);
+    return (
+      <OrderLine isVoided={item.is_voided}>
+        {
+          remark
+            ? `${item.item_name}`
+            : `${item.qty} x ${item.item_name}`
+        } 
+      </OrderLine>
+    );
+  });
+};
 
 const _renderOrderByTimes = (items) => {
   return entries(items).map(([key, value]) => {
@@ -109,7 +125,7 @@ const _renderOrderByTimes = (items) => {
       </OrderDetail>
     );
   });
-}
+};
 
 const Order = ({ order }) => (
   <OrderCard>
