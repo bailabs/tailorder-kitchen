@@ -33,6 +33,20 @@ export default class AppFunctions {
         console.log("finally");
       });
   }
+  onClose = () => {
+    const { orderStore } = this.stores;
+    const data = { 'passkey': 'tailorder' };
+    axios.post('http://localhost:5000/api/v1/clear_orders', data)
+      .then(function(response) {
+        if (response) {
+          orderStore.clearOrders();
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+        console.log("Something is wrong...");
+      });
+  }
 }
 
 function _loadOrders(orderStore, orders) {

@@ -7,6 +7,11 @@ export default class OrderListModel {
   @observable orders = [];
 
   @action
+  clearOrders() {
+    this.orders = [];
+  }
+
+  @action
   addOrder(order) {
     const {
       id, 

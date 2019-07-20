@@ -41,7 +41,10 @@ const Modal = (props) => (
       <TextModal>{props.text}</TextModal>
     </ModalContent>
     <ModalFooter>
-      <Button danger={props.danger}>
+      <Button
+        danger={props.danger}
+        onClick={props.onConfirm}
+      >
         {props.confirmText}
       </Button>
     </ModalFooter>

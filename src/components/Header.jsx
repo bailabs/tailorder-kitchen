@@ -61,6 +61,7 @@ class Header extends React.Component {
       setFilterPending,
       setFilterCompleted,
       setFilterCancelled,
+      onClose,
     } = this.props;
 
     return (
@@ -95,6 +96,7 @@ class Header extends React.Component {
             headerText="Confirm"
             confirmText="Close"
             text="Are you sure you want to close the kitchen?"
+            onConfirm={onClose}
             trigger={<Button danger>Close</Button>}  
           />
         </HeaderRight>

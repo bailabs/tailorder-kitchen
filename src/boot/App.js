@@ -33,7 +33,8 @@ export default function() {
           store={stores.stateStore}
           setFilterPending={app.setFilterPending}
           setFilterCompleted={app.setFilterCompleted}
-          setFilterCancelled={app.setFilterCancelled}  
+          setFilterCancelled={app.setFilterCancelled}
+          onClose={app.onClose}
         />
       </header>
       <content className="app-content">
