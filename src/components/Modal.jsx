@@ -28,10 +28,14 @@ const ModalHeader = styled.div`
 const Modal = (props) => (
   <Popup
     modal
+    open={props.open}
     closeOnDocumentClick 
     trigger={props.trigger}
     contentStyle={contentStyle}
   >
+      {close => (
+
+     <div>
     <ModalHeader>
       <TextModal bold header>
         {props.headerText}
@@ -43,11 +47,17 @@ const Modal = (props) => (
     <ModalFooter>
       <Button
         danger={props.danger}
-        onClick={props.onConfirm}
+        onClick={() => {
+          props.onConfirm()
+            close();
+
+        }}
       >
         {props.confirmText}
       </Button>
     </ModalFooter>
+     </div>
+          )}
   </Popup> 
 );
 

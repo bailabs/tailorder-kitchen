@@ -8,6 +8,24 @@ import { faList, faCheck, faBan } from "@fortawesome/free-solid-svg-icons";
 import Button from "./Button";
 import HeaderButton from "./HeaderButton";
 import Modal from "./Modal";
+import Popup from "reactjs-popup";
+const TextModal = styled.div`
+  font-family: Helvetica, sans-serif;
+  font-size: 18px;
+  color: ${props => props.header ? "#777" : "#555"};
+  font-weight: ${props => props.bold ? "bold" : "normal"};
+`;
+
+
+const ModalFooter = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 15px;
+`;
+
+const ModalHeader = styled.div`
+  padding: 13px 15px;
+`;
 
 const HeaderBar = styled.div`
   display: flex;
@@ -56,7 +74,7 @@ const ModalContent = styled.div`
 @observer
 class Header extends React.Component {
   render() {
-    const { orderFilter } = this.props.store;
+    const { orderFilter,modalbool } = this.props.store;
     const {
       setFilterPending,
       setFilterCompleted,
@@ -97,8 +115,9 @@ class Header extends React.Component {
             confirmText="Close"
             text="Are you sure you want to close the kitchen?"
             onConfirm={onClose}
-            trigger={<Button danger>Close</Button>}  
+            trigger={<Button danger>Close</Button>}
           />
+
         </HeaderRight>
       </HeaderBar>
     );
