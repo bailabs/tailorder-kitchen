@@ -9,14 +9,16 @@ export default class OrderModel {
   @observable remarks;
   @observable isFulfilled;
   @observable isCancelled;
-  
-  constructor(id, tableNo, type, items, remarks, isFulfilled=false, isCancelled=false) {
+  @observable isFinished;
+
+  constructor(id, tableNo, type, items, remarks, isFulfilled=false, isCancelled=false, isFinished=false) {
     this.id = id;
     this.tableNo = tableNo;
     this.type = type;
     this.items = items;
     this.isFulfilled = isFulfilled;
     this.isCancelled = isCancelled;
+    this.isFinished = isFinished;
     this.remarks = remarks;
   }
 
@@ -48,5 +50,9 @@ export default class OrderModel {
   @action
   cancel() {
     this.isCancelled = true;
+  }
+  @action
+  done() {
+    this.isFinished = true;
   }
 }

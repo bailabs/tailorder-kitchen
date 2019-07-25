@@ -20,6 +20,9 @@ function onConnect() {
     if (order.void) {
       stores.orderStore.voidOrder(order);
     }
+    if (order.finish) {
+      stores.orderStore.doneOrder(order);
+    }
   });
 }
 

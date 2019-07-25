@@ -20,7 +20,8 @@ export default class OrderListModel {
       items,
       remarks,
       is_fulfilled,
-      is_cancelled, 
+      is_cancelled,
+        is_finished,
     } = order;
 
     const itemsByTime = groupByProperty(items, 'creation');
@@ -31,7 +32,8 @@ export default class OrderListModel {
       itemsByTime,
       remarks,
       is_fulfilled,
-      is_cancelled
+      is_cancelled,
+      is_finished
     );
 
     this.orders.push(newOrder);
@@ -56,6 +58,11 @@ export default class OrderListModel {
   fulfillOrder(order) {
     let existingOrder = this.getOrder(order.id);
     existingOrder && existingOrder.fulfill();    
+  }
+  @action
+  doneOrder(order) {
+    let existingOrder = this.getOrder(order.id);
+    existingOrder && existingOrder.done();
   }
 
   @action

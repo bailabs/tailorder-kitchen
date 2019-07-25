@@ -20,7 +20,7 @@ export default function() {
     stateStore: new StateModel(),
     orderStore: new OrderListModel(),
   };
-
+  window.orderStore = stores.orderStore;
   const app = new AppFunctions(stores);
 
   SocketIO("http://localhost:5000", stores);
@@ -41,6 +41,7 @@ export default function() {
         <OrderList
           store={stores.orderStore}
           stateStore={stores.stateStore}
+          done={order => app.doneOrder(order)}
         />
       </content>
     </div>

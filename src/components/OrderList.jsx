@@ -16,7 +16,7 @@ const List = styled.div`
 
 const _getFilter = (orderFilter) => {
   if (orderFilter === "Pending") {
-    return { isFulfilled: false };
+    return { isFulfilled: false, isFinished: false };
   } else if (orderFilter === "Completed") {
     return { isFulfilled: true };
   } else if (orderFilter === "Cancelled") {
@@ -30,11 +30,10 @@ class OrderList extends React.Component {
     const { orders } = this.props.store;
     const { orderFilter } = this.props.stateStore;
     const filtered = filterByObject(orders, _getFilter(orderFilter));
-
     return (
       <List className="order-list">
         {filtered.map(order =>
-          <Order order={order} key={order.id} />
+          <Order order={order} key={order.id} done={(order) => this.props.done(order)}/>
         )}
       </List>
     );

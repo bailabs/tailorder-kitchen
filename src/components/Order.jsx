@@ -10,17 +10,10 @@ import { getLocaleTimeString } from "../utils";
 const OrderCard = styled.div`
   flex: 0 1 230px;
   background-color: #fff;
-  box-sizing: border-box;
-  display: block;
   border-radius: 5px;
   margin: 20px 15px;
-  min-height: 700px;
-  max-height: 700px;
-
-  overflow-y: scroll;
-  -webkit-box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.11);
-  -moz-box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.11);
-  box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.11);
+ height:auto;
+ min-height: 300px
 `;
 
 const OrderHeader = styled.div`
@@ -51,7 +44,11 @@ const OrderLines = styled.ul`
   padding: 0;
   margin: 0;
 `;
-
+const OrderButton = styled.button`
+width: 98%;
+margin-right: 1%;
+margin-left: 1%
+`;
 const OrderLine = styled.li`
   padding: 0.25em;
   color: ${props =>
@@ -128,7 +125,7 @@ const _renderOrderByTimes = (items) => {
   });
 };
 
-const Order = ({ order }) => (
+const Order = ({ order,done }) => (
   <OrderCard>
     <OrderHeader
       isFulfilled={order.isFulfilled}
@@ -150,6 +147,9 @@ const Order = ({ order }) => (
       <TextRow>Remarks</TextRow>
       <OrderRemarks>{order.remarks}</OrderRemarks>
     </OrderFooter>
+      {!order.isFinished ? (
+          <OrderButton onClick={() => done(order)}>Done</OrderButton>
+      ) : null}
   </OrderCard>
 );
 
