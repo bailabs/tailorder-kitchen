@@ -16,7 +16,7 @@ const List = styled.div`
 
 const _getFilter = (orderFilter) => {
   if (orderFilter === "Pending") {
-    return { isFulfilled: false, isFinished: false };
+    return { isFulfilled: false, isFinished: false,isCancelled: false };
   } else if (orderFilter === "Completed") {
     return { isFulfilled: true };
   } else if (orderFilter === "Cancelled") {

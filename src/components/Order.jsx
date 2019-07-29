@@ -12,8 +12,8 @@ const OrderCard = styled.div`
   background-color: #fff;
   border-radius: 5px;
   margin: 20px 15px;
- height:auto;
- min-height: 300px
+ max-height: 550px;
+ min-height: 550px
 `;
 
 const OrderHeader = styled.div`
@@ -114,12 +114,15 @@ const _renderLines = (items) => {
   });
 };
 
-const _renderOrderByTimes = (items) => {
+const _renderOrderByTimes = (items,order) => {
   return entries(items).map(([key, value]) => {
     return (
       <OrderDetail>
         <OrderTime>{ getLocaleTimeString(key) }</OrderTime>
         <OrderLines>{ _renderLines(value) }</OrderLines>
+          {/*{!order.isFinished ? (*/}
+              {/*<OrderButton onClick={() => done(order)}>Done</OrderButton>*/}
+          {/*) : null}*/}
       </OrderDetail>
     );
   });
@@ -141,7 +144,8 @@ const Order = ({ order,done }) => (
         <div>Order {order.id}</div>
         <div>{order.type}</div>
       </TextRow>
-      {_renderOrderByTimes(order.items)}
+      {_renderOrderByTimes(order.items, order)}
+
     </OrderContent>
     <OrderFooter>
       <TextRow>Remarks</TextRow>
