@@ -80,4 +80,13 @@ export default class OrderListModel {
       existingOrder.setRemarks(order.remarks);
     }
   }
+    @action
+    doneLineOrder(order) {
+        let existingOrder = this.getOrder(order.id);
+        if (existingOrder) {
+            const itemsByTime = groupByProperty(order.items, 'creation');
+            existingOrder.setItems(itemsByTime);
+            existingOrder.setRemarks(order.remarks);
+        }
+    }
 }

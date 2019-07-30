@@ -1,19 +1,27 @@
 import React from "react";
+
 import { entries } from "mobx";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 
 import OrderTimer from "./OrderTimer";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { getLocaleTimeString } from "../utils";
 
-const OrderCard = styled.div`
-  flex: 0 1 230px;
+;const OrderCard = styled.div`
+  flex: 0 1 250px;
   background-color: #fff;
   border-radius: 5px;
   margin: 20px 15px;
- max-height: 550px;
- min-height: 550px
+  max-height: 450px;
+  min-height: 450px;
+  padding-bottom: 10px
+  font-size: 14px;
+  overflow-y: scroll;
+  -webkit-box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.11);
+  -moz-box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.11);
+  box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.11);
 `;
 
 const OrderHeader = styled.div`
@@ -40,19 +48,26 @@ const OrderType = styled.div`
 `;
 
 const OrderLines = styled.ul`
+  
   list-style-type: none;
   padding: 0;
   margin: 0;
 `;
 const OrderButton = styled.button`
+width: 25%;
+font-size: 14px;
+`;
+const DoneOrderButton = styled.button`
 width: 98%;
 margin-right: 1%;
 margin-left: 1%
 `;
 const OrderLine = styled.li`
+display: flex;
+  justify-content: space-between;
   padding: 0.25em;
   color: ${props =>
-    props.isVoided ? "#eb5a46": "#333"
+    props.isVoided ? "#eb5a46": props.isDone ? "#228B22" :"#333"
   };
   text-decoration: ${props => 
     props.isVoided ? "line-through" : "none"
@@ -98,37 +113,46 @@ const _checkItemRemark = (item) => {
   }
   return false;
 };
+const _renderLines = (items,order,doneLine) => {
 
-const _renderLines = (items) => {
-  return items.map(item => {
-    const remark = _checkItemRemark(item);
-    return (
-      <OrderLine isVoided={item.is_voided}>
-        {
-          remark
-            ? `${item.item_name}`
-            : `${item.qty} x ${item.item_name}`
-        } 
-      </OrderLine>
-    );
+  return items.map((item,index) => {
+console.log("INDEEEEEEEEEEX")
+console.log(index)
+             const remark = _checkItemRemark(item);
+             return (
+                     <OrderLine key={index} isVoided={item.is_voided} isDone={item.is_done}>
+                         {
+                             remark
+                                 ? `${item.item_name}`
+                                 : `${item.qty} x ${item.item_name}`
+                         }
+                         {item.is_done ? (
+                             <FontAwesomeIcon icon={faCheck} color="#228B22" />
+
+                                 ) : (
+                             <OrderButton onClick={() => doneLine(order,item.id)}>Done</OrderButton>
+                         )}
+                     </OrderLine>
+
+             )
   });
 };
 
-const _renderOrderByTimes = (items,order) => {
+const _renderOrderByTimes = (items,order,doneLine) => {
   return entries(items).map(([key, value]) => {
+      console.log("ITEEEEEMS")
+      console.log(items)
     return (
       <OrderDetail>
         <OrderTime>{ getLocaleTimeString(key) }</OrderTime>
-        <OrderLines>{ _renderLines(value) }</OrderLines>
-          {/*{!order.isFinished ? (*/}
-              {/*<OrderButton onClick={() => done(order)}>Done</OrderButton>*/}
-          {/*) : null}*/}
+        <OrderLines>{ _renderLines(value,order,doneLine) }</OrderLines>
+
       </OrderDetail>
     );
   });
 };
 
-const Order = ({ order,done }) => (
+const Order = ({ order,done,doneLine }) => (
   <OrderCard>
     <OrderHeader
       isFulfilled={order.isFulfilled}
@@ -144,7 +168,7 @@ const Order = ({ order,done }) => (
         <div>Order {order.id}</div>
         <div>{order.type}</div>
       </TextRow>
-      {_renderOrderByTimes(order.items, order)}
+      {_renderOrderByTimes(order.items, order,doneLine)}
 
     </OrderContent>
     <OrderFooter>
@@ -152,7 +176,7 @@ const Order = ({ order,done }) => (
       <OrderRemarks>{order.remarks}</OrderRemarks>
     </OrderFooter>
       {!order.isFinished ? (
-          <OrderButton onClick={() => done(order)}>Done</OrderButton>
+          <DoneOrderButton onClick={() => done(order)}>Done Order</DoneOrderButton>
       ) : null}
   </OrderCard>
 );

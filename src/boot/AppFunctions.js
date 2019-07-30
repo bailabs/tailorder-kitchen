@@ -34,6 +34,7 @@ export default class AppFunctions {
       });
   }
   doneOrder = (order) => {
+    console.log(order)
     const { orderStore } = this.stores;
     console.log("ORDER")
       axios.post('http://localhost:5000/api/v1/done_order', order)
@@ -50,6 +51,24 @@ export default class AppFunctions {
           });
 
   }
+    doneLine = (order,orderLineIndex) => {
+    console.log("ORDEEEEEEEEEEEEEEEEEEEEEER")
+    console.log(order)
+    console.log(orderLineIndex)
+    const { orderStore } = this.stores;
+    console.log("ORDER")
+      axios.post('http://localhost:5000/api/v1/done_order1', {id: order.id, line_id: orderLineIndex} )
+          .then(function(response) {
+              console.log("ORDER RESPONSE")
+
+          })
+          .catch(function(error) {
+              console.log(error);
+              console.log("Something is wrong...");
+          });
+
+  }
+
   onClose = () => {
     const { orderStore, stateStore } = this.stores;
     const data = { 'passkey': 'tailorder' };

@@ -30,10 +30,12 @@ class OrderList extends React.Component {
     const { orders } = this.props.store;
     const { orderFilter } = this.props.stateStore;
     const filtered = filterByObject(orders, _getFilter(orderFilter));
+    console.log("FILTEEEEREED")
+    console.log(orders)
     return (
       <List className="order-list">
         {filtered.map(order =>
-          <Order order={order} key={order.id} done={(order) => this.props.done(order)}/>
+          <Order order={order} key={order.id} done={(order) => this.props.done(order)} doneLine={(order,orderLineIndex) => this.props.doneLine(order,orderLineIndex)}/>
         )}
       </List>
     );
