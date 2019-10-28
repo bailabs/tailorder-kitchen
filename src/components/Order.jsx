@@ -62,6 +62,11 @@ width: 98%;
 margin-right: 1%;
 margin-left: 1%
 `;
+const PrintOrderButton = styled.button`
+width: 98%;
+margin-right: 1%;
+margin-left: 1%
+`;
 const OrderLine = styled.li`
 display: flex;
   justify-content: space-between;
@@ -152,7 +157,7 @@ const _renderOrderByTimes = (items,order,doneLine) => {
   });
 };
 
-const Order = ({ order,done,doneLine }) => (
+const Order = ({ order,done,doneLine,printOrder }) => (
   <OrderCard>
     <OrderHeader
       isFulfilled={order.isFulfilled}
@@ -178,6 +183,10 @@ const Order = ({ order,done,doneLine }) => (
       {!order.isFinished ? (
           <DoneOrderButton onClick={() => done(order)}>Done Order</DoneOrderButton>
       ) : null}
+      {!order.isFinished ? (
+          <PrintOrderButton onClick={() => printOrder(order)}>Print Order</PrintOrderButton>
+      ) : null}
+
   </OrderCard>
 );
 

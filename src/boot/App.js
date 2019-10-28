@@ -42,6 +42,7 @@ export default function() {
           store={stores.orderStore}
           stateStore={stores.stateStore}
           done={order => app.doneOrder(order)}
+          printOrder={order => app.printOrder(order)}
           doneLine={(order,items) => app.doneLine(order,items)}
         />
       </content>

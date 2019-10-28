@@ -21,6 +21,7 @@ export default class AppFunctions {
     }
   }
   fetchOrders = () => {
+      console.log("COOOOOOOOOOOOM")
     const { orderStore } = this.stores;
     axios.get('http://localhost:5000/api/v1/all_orders/')
       .then(function(response) {
@@ -43,12 +44,20 @@ export default class AppFunctions {
 
               if (response) {
                   orderStore.doneOrder(order)
+
               }
           })
           .catch(function(error) {
               console.log(error);
               console.log("Something is wrong...");
           });
+
+  }
+   printOrder= (order) => {
+       axios.post('http://localhost:5000/api/v1/print_order', {id: order.id})
+           .then(function(response){
+               console.log("RESPOOOOOOOOOOOOONSE PRINT")
+           })
 
   }
     doneLine = (order,orderLineIndex) => {
