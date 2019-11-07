@@ -10,11 +10,12 @@ const ORDERS_PER_ROW = 4;
 
 const List = styled.div`
   display: flex;
+  flex: 1;
+  align-items: flex-start;
   flex-wrap: nowrap;
   overflow-y: auto;
   overflow-x: hidden;
-  flex: 1;
-`;
+  `;
 
 const _getFilter = orderFilter => {
   if (orderFilter === 'Pending') {
