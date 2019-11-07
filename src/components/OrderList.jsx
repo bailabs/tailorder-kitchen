@@ -15,7 +15,7 @@ const List = styled.div`
   flex-wrap: nowrap;
   overflow-y: auto;
   overflow-x: hidden;
-  `;
+`;
 
 const _getFilter = orderFilter => {
   if (orderFilter === 'Pending') {

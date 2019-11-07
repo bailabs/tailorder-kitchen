@@ -7,12 +7,10 @@ const Button = styled.button`
   box-sizing: border-box;
   cursor: pointer;
   border: 0;
-  border-left: 1px solid #ccc;
   width: 100px;
   transition: all 0.3s ease-out;
-  color: ${props => (props.active ? '#fff' : '#555')};
-  background-color: ${props => (props.active ? '#0079bf' : '#fff')};
-  border-right: ${props => (props.borderRight ? '1px solid #ccc' : 0)};
+  color: ${props => (props.active ? '#FFF' : '#007ac1')};
+  background-color: ${props => (props.active ? '#007ac1' : '#03a9f4')};
 `;
 
 const Text = styled.div`

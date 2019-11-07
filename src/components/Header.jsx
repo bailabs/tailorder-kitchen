@@ -9,6 +9,7 @@ import Button from './Button';
 import HeaderButton from './HeaderButton';
 import Modal from './Modal';
 import Popup from 'reactjs-popup';
+
 const TextModal = styled.div`
   font-family: Helvetica, sans-serif;
   font-size: 18px;
@@ -30,7 +31,7 @@ const HeaderBar = styled.div`
   display: flex;
   justify-content: center;
   height: 100%;
-  background-color: #fff;
+  background-color: #03a9f4;
   border-bottom: 1px solid #bbc;
 
   -webkit-box-shadow: 0px 1px 11px 0px rgba(0, 0, 0, 0.1);
@@ -41,7 +42,7 @@ const HeaderBar = styled.div`
 const HeaderTitle = styled.h1`
   font-family: Helvetica, sans-serif;
   font-size: 24px;
-  color: #777;
+  color: #111;
   margin: 0;
 `;
 
