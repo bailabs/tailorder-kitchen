@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Order from './Order';
 
 import { filterByObject, groupByRows } from '../utils';
+import LayoutFixer from './LayoutFixer';
 
 const ORDERS_PER_ROW = 4;
 
@@ -50,7 +51,12 @@ class OrderList extends React.Component {
     const { orderFilter } = this.props.stateStore;
     const filtered = filterByObject(orders, _getFilter(orderFilter));
     const ordersByRows = groupByRows(filtered, ORDERS_PER_ROW);
-    return _renderByRows(ordersByRows, this.props);
+    return (
+      <React.Fragment>
+        {_renderByRows(ordersByRows, this.props)}
+        <LayoutFixer />
+      </React.Fragment>
+    );
     // return (
     //   <List className="order-list">column
     //     {filtered.map(order =>
