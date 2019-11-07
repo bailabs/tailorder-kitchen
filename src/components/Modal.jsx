@@ -1,14 +1,14 @@
-import React from "react";
-import Popup from "reactjs-popup";
-import styled from "styled-components";
+import React from 'react';
+import Popup from 'reactjs-popup';
+import styled from 'styled-components';
 
-import Button from "./Button";
+import Button from './Button';
 
 const TextModal = styled.div`
   font-family: Helvetica, sans-serif;
   font-size: 18px;
-  color: ${props => props.header ? "#777" : "#555"};
-  font-weight: ${props => props.bold ? "bold" : "normal"};
+  color: ${props => (props.header ? '#777' : '#555')};
+  font-weight: ${props => (props.bold ? 'bold' : 'normal')};
 `;
 
 const ModalContent = styled.div`
@@ -25,40 +25,38 @@ const ModalHeader = styled.div`
   padding: 13px 15px;
 `;
 
-const Modal = (props) => (
+const Modal = props => (
   <Popup
     modal
     open={props.open}
-    closeOnDocumentClick 
+    closeOnDocumentClick
     trigger={props.trigger}
     contentStyle={contentStyle}
   >
-      {close => (
-
-     <div>
-    <ModalHeader>
-      <TextModal bold header>
-        {props.headerText}
-      </TextModal>
-    </ModalHeader>
-    <ModalContent>
-      <TextModal>{props.text}</TextModal>
-    </ModalContent>
-    <ModalFooter>
-      <Button
-        danger={props.danger}
-        onClick={() => {
-          props.onConfirm()
-            close();
-
-        }}
-      >
-        {props.confirmText}
-      </Button>
-    </ModalFooter>
-     </div>
-          )}
-  </Popup> 
+    {close => (
+      <div>
+        <ModalHeader>
+          <TextModal bold header>
+            {props.headerText}
+          </TextModal>
+        </ModalHeader>
+        <ModalContent>
+          <TextModal>{props.text}</TextModal>
+        </ModalContent>
+        <ModalFooter>
+          <Button
+            danger={props.danger}
+            onClick={() => {
+              props.onConfirm();
+              close();
+            }}
+          >
+            {props.confirmText}
+          </Button>
+        </ModalFooter>
+      </div>
+    )}
+  </Popup>
 );
 
 const contentStyle = {

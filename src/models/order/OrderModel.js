@@ -1,5 +1,5 @@
-import { keys, observable, action } from "mobx";
-import { getLinesByTime } from "../../utils";
+import { keys, observable, action } from 'mobx';
+import { getLinesByTime } from '../../utils';
 
 export default class OrderModel {
   id;
@@ -11,7 +11,16 @@ export default class OrderModel {
   @observable isCancelled;
   @observable isFinished;
 
-  constructor(id, tableNo, type, items, remarks, isFulfilled=false, isCancelled=false, isFinished=false) {
+  constructor(
+    id,
+    tableNo,
+    type,
+    items,
+    remarks,
+    isFulfilled = false,
+    isCancelled = false,
+    isFinished = false
+  ) {
     this.id = id;
     this.tableNo = tableNo;
     this.type = type;

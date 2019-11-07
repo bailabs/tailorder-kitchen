@@ -17,8 +17,7 @@ export function getLocaleTimeString(timestamp) {
 export function filterByObject(arr, object) {
   return arr.filter(item => {
     for (let property in object) {
-      if (object[property] !== item[property])
-        return false;  
+      if (object[property] !== item[property]) return false;
     }
     return true;
   });
@@ -32,10 +31,14 @@ export function groupByRows(arr, columns) {
    */
   let current = 0;
   const rowsObject = arr.reduce((grouped, item) => {
-    if (!grouped[current]) { grouped[current] = []; }
+    if (!grouped[current]) {
+      grouped[current] = [];
+    }
     grouped[current].push(item);
-    if (grouped[current].length === columns) { current++; }
-    return grouped
-  }, {})
+    if (grouped[current].length === columns) {
+      current++;
+    }
+    return grouped;
+  }, {});
   return Object.values(rowsObject);
 }

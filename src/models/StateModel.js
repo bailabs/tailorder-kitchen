@@ -1,11 +1,11 @@
-import { observable, action } from "mobx";
+import { observable, action } from 'mobx';
 
 export default class StateModel {
   @observable orderFilter;
   @observable modalbool;
 
   constructor() {
-    this.orderFilter = "Pending";
+    this.orderFilter = 'Pending';
     this.modalbool = true;
   }
 
@@ -15,6 +15,6 @@ export default class StateModel {
   }
   @action
   setModalBoolValue(modalBool) {
-      this.modalbool = modalBool;
+    this.modalbool = modalBool;
   }
 }

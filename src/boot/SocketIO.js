@@ -1,8 +1,8 @@
-import SocketIOClient from "socket.io-client";
+import SocketIOClient from 'socket.io-client';
 
 function onConnect() {
   const { socket, stores } = this;
-  
+
   socket.on('create', function(order) {
     stores.orderStore.addOrder(order);
   });

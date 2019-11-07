@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 
 class OrderTimer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      countdown: 0
+      countdown: 0,
     };
   }
   componentDidMount() {
     setInterval(() => {
       const { countdown } = this.state;
-      this.setState({countdown: countdown + 1});
+      this.setState({ countdown: countdown + 1 });
     }, 1000);
   }
   render() {

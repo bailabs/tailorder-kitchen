@@ -1,6 +1,6 @@
-import React from "react";
-import { observer } from "mobx-react";
-import styled from "styled-components";
+import React from 'react';
+import { observer } from 'mobx-react';
+import styled from 'styled-components';
 
 const FilterText = styled.div`
   font-weight: bold;
@@ -16,11 +16,9 @@ class Filter extends React.Component {
   render() {
     return (
       <FilterContent>
-        <FilterText>
-          Filter: {this.props.store.orderFilter}
-        </FilterText>
+        <FilterText>Filter: {this.props.store.orderFilter}</FilterText>
       </FilterContent>
-    )
+    );
   }
 }
 

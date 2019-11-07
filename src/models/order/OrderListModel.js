@@ -1,7 +1,7 @@
-import { observable, action, computed } from "mobx";
-import { groupByProperty } from "../../utils";
+import { observable, action, computed } from 'mobx';
+import { groupByProperty } from '../../utils';
 
-import OrderModel from "./OrderModel";
+import OrderModel from './OrderModel';
 
 export default class OrderListModel {
   @observable orders = [];
@@ -14,14 +14,14 @@ export default class OrderListModel {
   @action
   addOrder(order) {
     const {
-      id, 
-      table_no, 
-      type, 
+      id,
+      table_no,
+      type,
       items,
       remarks,
       is_fulfilled,
       is_cancelled,
-        is_finished,
+      is_finished,
     } = order;
 
     const itemsByTime = groupByProperty(items, 'creation');
@@ -57,7 +57,7 @@ export default class OrderListModel {
   @action
   fulfillOrder(order) {
     let existingOrder = this.getOrder(order.id);
-    existingOrder && existingOrder.fulfill();    
+    existingOrder && existingOrder.fulfill();
   }
   @action
   doneOrder(order) {
@@ -80,13 +80,13 @@ export default class OrderListModel {
       existingOrder.setRemarks(order.remarks);
     }
   }
-    @action
-    doneLineOrder(order) {
-        let existingOrder = this.getOrder(order.id);
-        if (existingOrder) {
-            const itemsByTime = groupByProperty(order.items, 'creation');
-            existingOrder.setItems(itemsByTime);
-            existingOrder.setRemarks(order.remarks);
-        }
+  @action
+  doneLineOrder(order) {
+    let existingOrder = this.getOrder(order.id);
+    if (existingOrder) {
+      const itemsByTime = groupByProperty(order.items, 'creation');
+      existingOrder.setItems(itemsByTime);
+      existingOrder.setRemarks(order.remarks);
     }
+  }
 }

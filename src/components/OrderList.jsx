@@ -1,10 +1,10 @@
-import React from "react";
-import { observer } from "mobx-react";
-import styled from "styled-components";
+import React from 'react';
+import { observer } from 'mobx-react';
+import styled from 'styled-components';
 
-import Order from "./Order";
+import Order from './Order';
 
-import { filterByObject, groupByRows } from "../utils";
+import { filterByObject, groupByRows } from '../utils';
 
 const List = styled.div`
   display: flex;
@@ -14,36 +14,31 @@ const List = styled.div`
   flex: 1;
 `;
 
-const _getFilter = (orderFilter) => {
-  if (orderFilter === "Pending") {
-    return { isFulfilled: false, isFinished: false,isCancelled: false };
-  } else if (orderFilter === "Completed") {
+const _getFilter = orderFilter => {
+  if (orderFilter === 'Pending') {
+    return { isFulfilled: false, isFinished: false, isCancelled: false };
+  } else if (orderFilter === 'Completed') {
     return { isFulfilled: true };
-  } else if (orderFilter === "Cancelled") {
+  } else if (orderFilter === 'Cancelled') {
     return { isCancelled: true };
   }
 };
 
-const _renderByColumns = (orderColumns, props) => (
-  orderColumns.map(order => 
+const _renderByColumns = (orderColumns, props) =>
+  orderColumns.map(order => (
     <Order
       order={order}
       key={order.id}
-      printOrder={(order) => props.printOrder(order)}
-      done={(order) => props.done(order)}
+      printOrder={order => props.printOrder(order)}
+      done={order => props.done(order)}
       doneLine={(order, index) => props.doneLine(order, index)}
     />
-  )
-);
+  ));
 
-const _renderByRows = (orderRows, props) => (
-  orderRows.map(orderRow =>
-    <List className="order-list">
-      {_renderByColumns(orderRow, props)}
-    </List>
-  )
-);
-
+const _renderByRows = (orderRows, props) =>
+  orderRows.map(orderRow => (
+    <List className="order-list">{_renderByColumns(orderRow, props)}</List>
+  ));
 
 @observer
 class OrderList extends React.Component {

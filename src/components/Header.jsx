@@ -1,21 +1,20 @@
-import React from "react";
-import { observer } from "mobx-react";
-import styled from "styled-components";
+import React from 'react';
+import { observer } from 'mobx-react';
+import styled from 'styled-components';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faList, faCheck, faBan } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList, faCheck, faBan } from '@fortawesome/free-solid-svg-icons';
 
-import Button from "./Button";
-import HeaderButton from "./HeaderButton";
-import Modal from "./Modal";
-import Popup from "reactjs-popup";
+import Button from './Button';
+import HeaderButton from './HeaderButton';
+import Modal from './Modal';
+import Popup from 'reactjs-popup';
 const TextModal = styled.div`
   font-family: Helvetica, sans-serif;
   font-size: 18px;
-  color: ${props => props.header ? "#777" : "#555"};
-  font-weight: ${props => props.bold ? "bold" : "normal"};
+  color: ${props => (props.header ? '#777' : '#555')};
+  font-weight: ${props => (props.bold ? 'bold' : 'normal')};
 `;
-
 
 const ModalFooter = styled.div`
   display: flex;
@@ -34,9 +33,9 @@ const HeaderBar = styled.div`
   background-color: #fff;
   border-bottom: 1px solid #bbc;
 
-  -webkit-box-shadow: 0px 1px 11px 0px rgba(0,0,0,0.1);
-  -moz-box-shadow: 0px 1px 11px 0px rgba(0,0,0,0.1);
-  box-shadow: 0px 1px 11px 0px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0px 1px 11px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 11px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 11px 0px rgba(0, 0, 0, 0.1);
 `;
 
 const HeaderTitle = styled.h1`
@@ -74,7 +73,7 @@ const ModalContent = styled.div`
 @observer
 class Header extends React.Component {
   render() {
-    const { orderFilter,modalbool } = this.props.store;
+    const { orderFilter, modalbool } = this.props.store;
     const {
       setFilterPending,
       setFilterCompleted,
@@ -90,21 +89,21 @@ class Header extends React.Component {
         <HeaderBody>
           <HeaderButton
             text="Pending"
-            icon={faList} 
-            active={orderFilter === "Pending"}
+            icon={faList}
+            active={orderFilter === 'Pending'}
             onClick={setFilterPending}
           />
           <HeaderButton
             text="Completed"
             icon={faCheck}
-            active={orderFilter === "Completed"}
+            active={orderFilter === 'Completed'}
             onClick={setFilterCompleted}
           />
           <HeaderButton
             borderRight
             text="Cancelled"
             icon={faBan}
-            active={orderFilter === "Cancelled"}
+            active={orderFilter === 'Cancelled'}
             onClick={setFilterCancelled}
           />
         </HeaderBody>
@@ -117,7 +116,6 @@ class Header extends React.Component {
             onConfirm={onClose}
             trigger={<Button danger>Close</Button>}
           />
-
         </HeaderRight>
       </HeaderBar>
     );

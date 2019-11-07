@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Button = styled.button`
   box-sizing: border-box;
@@ -10,9 +10,9 @@ const Button = styled.button`
   border-left: 1px solid #ccc;
   width: 100px;
   transition: all 0.3s ease-out;
-  color: ${props => props.active ? "#fff": "#555"};
-  background-color: ${props => props.active ? "#0079bf" : "#fff"};
-  border-right: ${props => props.borderRight ? "1px solid #ccc" : 0 }
+  color: ${props => (props.active ? '#fff' : '#555')};
+  background-color: ${props => (props.active ? '#0079bf' : '#fff')};
+  border-right: ${props => (props.borderRight ? '1px solid #ccc' : 0)};
 `;
 
 const Text = styled.div`
@@ -21,16 +21,12 @@ const Text = styled.div`
 `;
 
 const HeaderButton = props => (
-  <Button 
+  <Button
     active={props.active}
     onClick={props.onClick}
     borderRight={props.borderRight}
   >
-    {
-      props.icon 
-      ? <FontAwesomeIcon size="2x" icon={props.icon} />
-      : null
-    }
+    {props.icon ? <FontAwesomeIcon size="2x" icon={props.icon} /> : null}
     <Text>{props.text}</Text>
   </Button>
 );
