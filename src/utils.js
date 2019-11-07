@@ -23,3 +23,19 @@ export function filterByObject(arr, object) {
     return true;
   });
 }
+
+export function groupByRows(arr, columns) {
+  /**
+   * Group arrays by rows
+   * @param {number} arr  Array of objects that needs to be grouped
+   * @param {number} columns Max columns per rows
+   */
+  let current = 0;
+  const rowsObject = arr.reduce((grouped, item) => {
+    if (!grouped[current]) { grouped[current] = []; }
+    grouped[current].push(item);
+    if (grouped[current].length === columns) { current++; }
+    return grouped
+  }, {})
+  return Object.values(rowsObject);
+}
