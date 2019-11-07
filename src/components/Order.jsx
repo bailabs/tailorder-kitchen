@@ -14,8 +14,6 @@ const OrderCard = styled.div`
   background-color: #fff;
   border-radius: 5px;
   margin: 20px 15px;
-  max-height: 450px;
-  min-height: 450px;
   padding-bottom: 10px
   font-size: 14px;
   overflow-y: scroll;
