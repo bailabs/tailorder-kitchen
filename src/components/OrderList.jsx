@@ -6,6 +6,8 @@ import Order from './Order';
 
 import { filterByObject, groupByRows } from '../utils';
 
+const ORDERS_PER_ROW = 4;
+
 const List = styled.div`
   display: flex;
   flex-wrap: nowrap;
@@ -46,7 +48,7 @@ class OrderList extends React.Component {
     const { orders } = this.props.store;
     const { orderFilter } = this.props.stateStore;
     const filtered = filterByObject(orders, _getFilter(orderFilter));
-    const ordersByRows = groupByRows(filtered, 5);
+    const ordersByRows = groupByRows(filtered, ORDERS_PER_ROW);
     return _renderByRows(ordersByRows, this.props);
     // return (
     //   <List className="order-list">column
