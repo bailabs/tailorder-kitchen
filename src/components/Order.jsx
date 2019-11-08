@@ -51,16 +51,27 @@ const OrderButton = styled.button`
   width: 25%;
   font-size: 14px;
 `;
+
 const DoneOrderButton = styled.button`
-  width: 98%;
-  margin-right: 1%;
-  margin-left: 1%;
+  margin: 0.3em 0.5em;
+  color: white;
+  background-color: ${props => props.active ? "#007ac1" : "#03a9f4"};
+  display: inline-block;
+  font-weight: bold;
+  padding: 1.2em 1.2em;
+  border: none;
 `;
+
 const PrintOrderButton = styled.button`
-  width: 98%;
-  margin-right: 1%;
-  margin-left: 1%;
+  margin: 0.3em 0.5em;
+  color: white;
+  background-color: ${props => props.active ? "#007ac1" : "#03a9f4"};
+  display: inline-block;
+  font-weight: bold;
+  padding: 1.2em 1.2em;
+  border: none;
 `;
+
 const OrderLine = styled.li`
   display: flex;
   justify-content: space-between;
