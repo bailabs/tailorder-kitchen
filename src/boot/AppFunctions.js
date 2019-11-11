@@ -21,7 +21,6 @@ export default class AppFunctions {
     };
   };
   fetchOrders = () => {
-    console.log('COOOOOOOOOOOOM');
     const { orderStore } = this.stores;
     axios
       .get('http://localhost:5000/api/v1/all_orders/')

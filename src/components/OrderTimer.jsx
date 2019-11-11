@@ -8,10 +8,13 @@ class OrderTimer extends React.Component {
     };
   }
   componentDidMount() {
-    setInterval(() => {
+    this.timer = setInterval(() => {
       const { countdown } = this.state;
       this.setState({ countdown: countdown + 1 });
     }, 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
   render() {
     const { countdown } = this.state;

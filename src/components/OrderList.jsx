@@ -22,7 +22,7 @@ const _getFilter = orderFilter => {
   if (orderFilter === 'Pending') {
     return { isFulfilled: false, isFinished: false, isCancelled: false };
   } else if (orderFilter === 'Completed') {
-    return { isFulfilled: true };
+    return { isFinished: true };
   } else if (orderFilter === 'Cancelled') {
     return { isCancelled: true };
   }
