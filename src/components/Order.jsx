@@ -52,10 +52,20 @@ const OrderButton = styled.button`
   font-size: 14px;
 `;
 
+const Button = styled.button`
+  margin: 0.3em 0.5em;
+  color: white;
+  background-color: ${props => (props.active ? '#007ac1' : '#03a9f4')};
+  display: inline-block;
+  font-weight: bold;
+  padding: 1.2em 1.2em;
+  border: none;
+`;
+
 const DoneOrderButton = styled.button`
   margin: 0.3em 0.5em;
   color: white;
-  background-color: ${props => props.active ? "#007ac1" : "#03a9f4"};
+  background-color: ${props => (props.active ? '#007ac1' : '#03a9f4')};
   display: inline-block;
   font-weight: bold;
   padding: 1.2em 1.2em;
@@ -65,7 +75,7 @@ const DoneOrderButton = styled.button`
 const PrintOrderButton = styled.button`
   margin: 0.3em 0.5em;
   color: white;
-  background-color: ${props => props.active ? "#007ac1" : "#03a9f4"};
+  background-color: ${props => (props.active ? '#007ac1' : '#03a9f4')};
   display: inline-block;
   font-weight: bold;
   padding: 1.2em 1.2em;
@@ -151,7 +161,7 @@ const _renderOrderByTimes = (items, order, doneLine) => {
   });
 };
 
-const Order = ({ order, done, doneLine, printOrder }) => (
+const Order = ({ order, done, doneLine, printOrder, uncancelOrder }) => (
   <OrderCard>
     <OrderHeader
       isFulfilled={order.isFulfilled}
@@ -179,6 +189,9 @@ const Order = ({ order, done, doneLine, printOrder }) => (
         Print Order
       </PrintOrderButton>
     ) : null}
+    {order.isCancelled && (
+      <Button onClick={() => uncancelOrder(order)}>Uncancel Order</Button>
+    )}
   </OrderCard>
 );
 

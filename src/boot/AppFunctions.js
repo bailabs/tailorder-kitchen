@@ -20,6 +20,7 @@ export default class AppFunctions {
       isCancelled: this.stores.stateStore.orderFilter === 'Cancelled',
     };
   };
+
   fetchOrders = () => {
     const { orderStore } = this.stores;
     axios
@@ -34,6 +35,7 @@ export default class AppFunctions {
         console.log('finally');
       });
   };
+
   doneOrder = order => {
     console.log(order);
     const { orderStore } = this.stores;
@@ -52,6 +54,7 @@ export default class AppFunctions {
         console.log('Something is wrong...');
       });
   };
+
   printOrder = order => {
     axios
       .post('http://localhost:5000/api/v1/print_order', { id: order.id })
@@ -59,6 +62,17 @@ export default class AppFunctions {
         console.log('RESPOOOOOOOOOOOOONSE PRINT');
       });
   };
+
+  uncancelOrder = order => {
+    axios
+      .post('http://localhost:5000/api/v1/uncancel_order', { id: order.id })
+      .then(function(response) {
+        if (response) {
+          orderStore.uncancelOrder(order);
+        }
+      });
+  };
+
   doneLine = (order, orderLineIndex) => {
     console.log('ORDEEEEEEEEEEEEEEEEEEEEEER');
     console.log(order);

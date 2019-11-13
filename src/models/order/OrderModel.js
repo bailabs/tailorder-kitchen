@@ -60,8 +60,14 @@ export default class OrderModel {
   cancel() {
     this.isCancelled = true;
   }
+
   @action
   done() {
     this.isFinished = true;
+  }
+
+  @action
+  uncancel() {
+    this.isCancelled = false;
   }
 }

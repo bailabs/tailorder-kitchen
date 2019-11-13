@@ -43,6 +43,7 @@ export default function() {
           done={order => app.doneOrder(order)}
           printOrder={order => app.printOrder(order)}
           doneLine={(order, items) => app.doneLine(order, items)}
+          uncancelOrder={order => app.uncancelOrder(order)}
         />
       </content>
     </div>

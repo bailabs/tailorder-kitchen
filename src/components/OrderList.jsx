@@ -33,6 +33,7 @@ const _renderByColumns = (orderColumns, props) =>
     <Order
       order={order}
       key={order.id}
+      uncancelOrder={order => props.uncancelOrder(order)}
       printOrder={order => props.printOrder(order)}
       done={order => props.done(order)}
       doneLine={(order, index) => props.doneLine(order, index)}

@@ -72,6 +72,12 @@ export default class OrderListModel {
   }
 
   @action
+  uncancelOrder(order) {
+    let existingOrder = this.getOrder(order.id);
+    existingOrder && existingOrder.uncancel();
+  }
+
+  @action
   voidOrder(order) {
     let existingOrder = this.getOrder(order.id);
     if (existingOrder) {
