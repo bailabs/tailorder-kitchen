@@ -22,6 +22,7 @@ const OrderCard = styled.div`
 `;
 
 const OrderHeader = styled.div`
+  font-size: 20px;
   display: flex;
   justify-content: space-between;
   color: #fff;
@@ -34,6 +35,9 @@ const OrderHeader = styled.div`
 
 const OrderContent = styled.div`
   padding: 1em;
+    font-size: 16px;
+
+  
 `;
 
 const OrderType = styled.div`
@@ -48,7 +52,7 @@ const OrderLines = styled.ul`
   margin: 0;
 `;
 const OrderButton = styled.button`
-  width: 25%;
+width: 100%;
   font-size: 14px;
 `;
 
@@ -63,6 +67,7 @@ const Button = styled.button`
 `;
 
 const DoneOrderButton = styled.button`
+    
   margin: 0.3em 0.5em;
   color: white;
   background-color: ${props => (props.active ? '#007ac1' : '#03a9f4')};
@@ -83,6 +88,7 @@ const PrintOrderButton = styled.button`
 `;
 
 const OrderLine = styled.li`
+  font-size: 20px;
   display: flex;
   justify-content: space-between;
   padding: 0.25em;
@@ -101,6 +107,8 @@ const OrderDetail = styled.div`
 `;
 
 const OrderRemarks = styled.pre`
+  font-size: 18px;
+
   margin: 0;
   line-height: 100%;
 `;
@@ -109,7 +117,13 @@ const OrderFooter = styled.div`
   padding: 1em;
 `;
 
+const OrderLineBoundary = styled.div`
+  width 3em;
+  margin-left: 3em;
+`;
+
 const TextRow = styled.div`
+  font-size: 18px;
   display: flex;
   justify-content: space-between;
   color: #aaa;
@@ -130,19 +144,21 @@ const _checkItemRemark = item => {
 };
 const _renderLines = (items, order, doneLine) => {
   return items.map((item, index) => {
-    console.log('INDEEEEEEEEEEX');
-    console.log(index);
     const remark = _checkItemRemark(item);
     return (
       <OrderLine key={index} isVoided={item.is_voided} isDone={item.is_done}>
-        {remark ? `${item.item_name}` : `${item.qty} x ${item.item_name}`}
-        {item.is_done ? (
-          <FontAwesomeIcon icon={faCheck} color="#228B22" />
-        ) : (
-          <OrderButton onClick={() => doneLine(order, item.id)}>
-            Done
-          </OrderButton>
-        )}
+          {remark ? `${item.item_name}` : `${item.qty} x ${item.item_name}`}
+
+          <OrderLineBoundary>
+              {item.is_done ? (
+                  <FontAwesomeIcon icon={faCheck} color="#228B22" />
+              ) : (
+                  <OrderButton onClick={() => doneLine(order, item.id)}>
+                      Done
+                  </OrderButton>
+              )}
+          </OrderLineBoundary>
+
       </OrderLine>
     );
   });
