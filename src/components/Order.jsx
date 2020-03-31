@@ -10,11 +10,10 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { getLocaleTimeString } from '../utils';
 
 const OrderCard = styled.div`
-  flex: 0 1 250px;
   background-color: #fff;
   border-radius: 5px;
   margin: 20px 15px;
-  padding-bottom: 10px
+  padding-bottom: 10px;
   font-size: 14px;
   -webkit-box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.11);
   -moz-box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.11);
@@ -29,15 +28,13 @@ const OrderHeader = styled.div`
   font-family: Helvetica, sans-serif;
   font-weight: bold;
   padding: 0.75em 1em;
-
   background-color: ${props => (props.isFulfilled ? '#0079bf' : '#ff9f1a')};
+  
 `;
 
 const OrderContent = styled.div`
   padding: 1em;
     font-size: 16px;
-
-  
 `;
 
 const OrderType = styled.div`
@@ -88,6 +85,7 @@ const PrintOrderButton = styled.button`
 `;
 
 const OrderLine = styled.li`
+width: 100%;
   font-size: 20px;
   display: flex;
   justify-content: space-between;
@@ -104,6 +102,7 @@ const OrderTime = styled.div`
 const OrderDetail = styled.div`
   padding: 0.25em;
   border-top: 1px solid #efefef;
+  width: 100%
 `;
 
 const OrderRemarks = styled.pre`
@@ -115,6 +114,7 @@ const OrderRemarks = styled.pre`
 
 const OrderFooter = styled.div`
   padding: 1em;
+
 `;
 
 const OrderLineBoundary = styled.div`
@@ -145,8 +145,11 @@ const _checkItemRemark = item => {
 const _renderLines = (items, order, doneLine) => {
   return items.map((item, index) => {
     const remark = _checkItemRemark(item);
+      console.log('ITEEEEEMS');
+      console.log(item);
     return (
       <OrderLine key={index} isVoided={item.is_voided} isDone={item.is_done}>
+
           {remark ? `${item.item_name}` : `${item.qty} x ${item.item_name}`}
 
           <OrderLineBoundary>
@@ -166,8 +169,7 @@ const _renderLines = (items, order, doneLine) => {
 
 const _renderOrderByTimes = (items, order, doneLine) => {
   return entries(items).map(([key, value]) => {
-    console.log('ITEEEEEMS');
-    console.log(items);
+
     return (
       <OrderDetail>
         <OrderTime>{getLocaleTimeString(key)}</OrderTime>
