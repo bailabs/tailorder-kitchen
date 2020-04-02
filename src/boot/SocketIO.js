@@ -26,6 +26,9 @@ function onConnect() {
     if (order.done) {
       stores.orderStore.doneLineOrder(order);
     }
+    if (order.notdone) {
+      stores.orderStore.notDoneOrder(order);
+    }
   });
 }
 

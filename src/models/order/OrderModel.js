@@ -56,6 +56,7 @@ export default class OrderModel {
     this.isFulfilled = true;
   }
 
+
   @action
   cancel() {
     this.isCancelled = true;
@@ -65,6 +66,10 @@ export default class OrderModel {
   done() {
     this.isFinished = true;
   }
+    @action
+    notdone() {
+        this.isFinished = false;
+    }
 
   @action
   uncancel() {

@@ -64,6 +64,10 @@ export default class OrderListModel {
     let existingOrder = this.getOrder(order.id);
     existingOrder && existingOrder.done();
   }
+notDoneOrder(order) {
+    let existingOrder = this.getOrder(order.id);
+    existingOrder && existingOrder.notdone();
+  }
 
   @action
   cancelOrder(order) {
